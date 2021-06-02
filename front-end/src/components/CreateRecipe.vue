@@ -166,6 +166,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'CreateRecipe',
   data() {
@@ -299,6 +301,9 @@ export default {
         this.ruleForm;
       const passT = this.passTable;
       const amount = `${un} ${unidade}`;
+
+      const nome = name;
+      axios.post('/receitas', nome).then(() => alert('ok'));
 
       console.log({
         name,

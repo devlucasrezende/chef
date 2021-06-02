@@ -2,7 +2,7 @@ services:
   db:
     image: postgres
     restart: always
-    container_name: chef
+    container_name: chef-git
     environment:
       POSTGRES_PASSWORD: docker
     ports:
