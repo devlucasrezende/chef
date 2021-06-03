@@ -1,17 +1,14 @@
 <template>
   <div id="app">
-    <CreateRecipe />
+    <router-view />
   </div>
 </template>
 
 <script>
-import CreateRecipe from './components/CreateRecipe.vue';
+// import CreateRecipe from './components/CreateRecipe.vue';
 
 export default {
   name: 'App',
-  components: {
-    CreateRecipe,
-  },
 };
 </script>
 

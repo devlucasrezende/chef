@@ -1,13 +1,7 @@
 <template>
   <div>
     <el-row>
-      <el-header>
-        <img
-          :src="require('../assets/logo.png')"
-          alt="logo"
-          @click="handleClickLogo()"
-        />
-      </el-header>
+      <Header />
     </el-row>
     <el-row>
       <h1>Cadastrar receita</h1>
@@ -19,7 +13,7 @@
         label-width="150px"
         class="form"
       >
-        <el-col :span="12">
+        <el-col :span="12" :xs="6" :xl="12">
           <el-form-item label="Nome da receita" prop="name">
             <el-input v-model="ruleForm.name"></el-input>
           </el-form-item>
@@ -70,11 +64,11 @@
           </el-row>
           <el-row :gutter="20">
             <h2>Ingredientes</h2>
-            <el-col :span="12">
+            <el-col :span="10">
               <el-form-item label="Nome do ingrediente" prop="ing">
                 <el-input v-model="ruleForm.ing"></el-input></el-form-item
             ></el-col>
-            <el-col :span="8">
+            <el-col :span="12" :xs="12" :lg="6" :xl="6">
               <el-form-item label="Quantidade" prop="un">
                 <el-input v-model="ruleForm.un">
                   <el-select
@@ -127,7 +121,7 @@
             </el-col>
           </el-row>
         </el-col>
-        <el-col :span="12">
+        <el-col :span="12" :xs="6" :xl="12">
           <el-row class="form">
             <h3>Modo de preparo</h3>
             <el-row>
@@ -166,10 +160,12 @@
 </template>
 
 <script>
-import axios from 'axios';
+import Header from './Header.vue';
+// import axios from 'axios';
 
 export default {
   name: 'CreateRecipe',
+  components: { Header },
   data() {
     return {
       tableData: [],
@@ -289,32 +285,25 @@ export default {
       const { un, ing, unidade } = this.ruleForm;
       const amount = `${un} ${unidade}`;
       this.tableData.push({ un, ing, amount });
-      console.log({ un, ing, amount });
     },
+
     addPass() {
       const { pass } = this;
       this.passTable.push({ pass });
-      console.log({ pass });
     },
+
     handleSubmit() {
-      const { name, time, ren, categorias, ing, unidade, un, preparo } =
-        this.ruleForm;
-      const passT = this.passTable;
-      const amount = `${un} ${unidade}`;
+      // const passT = this.passTable;
+      // const amount = `${un} ${unidade}`;
+      // const data = JSON.stringify({ tableData: this.tableData });
 
-      const nome = name;
-      axios.post('/receitas', nome).then(() => alert('ok'));
+      // const data = {
+      //   nome: name,
+      // };
 
-      console.log({
-        name,
-        time,
-        ren,
-        categorias,
-        ing,
-        preparo,
-        passT,
-        amount,
-      });
+      // axios.post('/receitas', data).then(() => alert('ok'));
+
+      console.log({});
     },
   },
 };
@@ -357,6 +346,11 @@ export default {
 .btnReg {
   background-color: #f88836;
   color: #fff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  text-align: right;
 }
 
 .btnAdd:hover {
