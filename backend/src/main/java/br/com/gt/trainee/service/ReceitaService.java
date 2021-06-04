@@ -3,7 +3,6 @@ package br.com.gt.trainee.service;
 import br.com.gt.trainee.models.Receitas;
 import br.com.gt.trainee.repositories.ReceitasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

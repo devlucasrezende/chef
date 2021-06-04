@@ -44,6 +44,7 @@ img {
   max-height: 101px;
   filter: brightness(0) invert(1);
   cursor: pointer;
+  image-rendering: auto;
 }
 
 p {

@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-ChefApplication<Trainee>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "br.com.gt.trainee.ChefApplication",
+      "projectName": "Trainee",
+      "args": ""
+    }
+  ]
+}
