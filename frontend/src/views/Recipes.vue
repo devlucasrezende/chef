@@ -13,7 +13,7 @@
       <el-col :span="4" :offset="12">
         <el-button
           class="btnRecipe"
-          @click="$router.push({ name: '/createRecipe' })"
+          @click="$router.push({ name: '/createrecipe' })"
           >Cadastrar receita</el-button
         >
       </el-col>
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import Header from './Header.vue';
+import Header from '../components/Header.vue';
 
 export default {
   name: 'Recipes',

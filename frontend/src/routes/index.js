@@ -8,13 +8,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: '/',
-      component: () => import('../components/Recipes.vue'),
+      name: '/SignIn',
+      component: () => import('../views/SignIn.vue'),
     },
     {
-      path: '/createRecipe',
-      name: '/createRecipe',
-      component: () => import('../components/CreateRecipe.vue'),
+      path: '/recipes',
+      name: '/recipes',
+      component: () => import('../views/Recipes.vue'),
+    },
+    {
+      path: '/createrecipe',
+      name: '/createrecipe',
+      component: () => import('../views/CreateRecipe.vue'),
     },
   ],
 });

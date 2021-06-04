@@ -5,7 +5,7 @@
         <img
           :src="require('../assets/logo.png')"
           alt="logo"
-          @click="$router.push({ name: '/' })"
+          @click="$router.push({ name: '/SignIn' })"
         />
       </el-header>
     </el-col>

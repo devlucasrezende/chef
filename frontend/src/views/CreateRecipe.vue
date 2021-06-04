@@ -127,7 +127,7 @@
               </el-col>
             </el-row>
             <el-table :data="passTable" max-height="500">
-              <el-table-column prop="pass" width="660"> </el-table-column>
+              <el-table-column prop="pass" width="auto"> </el-table-column>
 
               <el-table-column label="Remover" width="auto">
                 <template slot-scope="scope">
@@ -157,7 +157,7 @@
 </template>
 
 <script>
-import Header from './Header.vue';
+import Header from '../components/Header.vue';
 // import axios from 'axios';
 
 export default {
@@ -299,7 +299,11 @@ export default {
 
       // axios.post('/receitas', data).then(() => alert('ok'));
 
-      console.log({});
+      this.$notify({
+        title: 'Success',
+        message: 'This is a success message',
+        type: 'success',
+      });
     },
   },
 };
