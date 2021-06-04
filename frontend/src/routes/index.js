@@ -7,8 +7,8 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/recipes',
-      name: '/recipes',
+      path: '/',
+      name: '/',
       component: () => import('../components/Recipes.vue'),
     },
     {

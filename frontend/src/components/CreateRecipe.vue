@@ -1,10 +1,12 @@
 <template>
-  <div>
+  <el-row>
     <el-row>
       <Header />
     </el-row>
     <el-row>
       <h1>Cadastrar receita</h1>
+    </el-row>
+    <el-row>
       <el-form
         ref="ruleForm"
         :model="ruleForm"
@@ -14,9 +16,11 @@
         class="form"
       >
         <el-col :span="12" :xs="6" :xl="12">
-          <el-form-item label="Nome da receita" prop="name">
-            <el-input v-model="ruleForm.name"></el-input>
-          </el-form-item>
+          <el-row>
+            <el-form-item label="Nome da receita" prop="name">
+              <el-input v-model="ruleForm.name"></el-input>
+            </el-form-item>
+          </el-row>
           <el-row :gutter="18">
             <el-col :span="12">
               <el-form-item label="Tempo de preparo" prop="time">
@@ -62,13 +66,13 @@
               </el-col>
             </el-form-item>
           </el-row>
-          <el-row :gutter="20">
+          <el-row :gutter="10">
             <h2>Ingredientes</h2>
-            <el-col :span="10">
+            <el-col :span="8">
               <el-form-item label="Nome do ingrediente" prop="ing">
                 <el-input v-model="ruleForm.ing"></el-input></el-form-item
             ></el-col>
-            <el-col :span="12" :xs="12" :lg="6" :xl="6">
+            <el-col :span="10" :offset="1">
               <el-form-item label="Quantidade" prop="un">
                 <el-input v-model="ruleForm.un">
                   <el-select
@@ -84,13 +88,13 @@
                 </el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="2">
+            <el-col :span="2" :offset="1">
               <el-button class="btnAdd" @click="addIng()"
                 ><i class="el-icon-plus" />Adicionar</el-button
               >
             </el-col>
           </el-row>
-          <el-table :data="tableData" style="width: auto">
+          <el-table :data="tableData" max-height="500" style="width: auto">
             <el-table-column fixed prop="ing" label="Ingrediente" width="auto">
             </el-table-column>
             <el-table-column prop="amount" label="Quantidade" width="auto">
@@ -107,19 +111,6 @@
               </template>
             </el-table-column>
           </el-table>
-          <el-row>
-            <el-col :span="12" style="margin-top: 30px">
-              <el-button>Cancelar</el-button>
-            </el-col>
-            <el-col :span="12" style="margin-top: 30px">
-              <el-button
-                style="margin-left: auto"
-                class="btnReg"
-                @click="handleSubmit()"
-                >Cadastrar</el-button
-              >
-            </el-col>
-          </el-row>
         </el-col>
         <el-col :span="12" :xs="6" :xl="12">
           <el-row class="form">
@@ -135,12 +126,10 @@
                 >
               </el-col>
             </el-row>
+            <el-table :data="passTable" max-height="500">
+              <el-table-column prop="pass" width="660"> </el-table-column>
 
-            <el-table :data="passTable" style="width: auto" max-height="240">
-              <el-table-column fixed prop="pass" width="auto">
-              </el-table-column>
-
-              <el-table-column label="Remover" width="120">
+              <el-table-column label="Remover" width="auto">
                 <template slot-scope="scope">
                   <el-button
                     type="text"
@@ -156,7 +145,15 @@
         </el-col>
       </el-form>
     </el-row>
-  </div>
+    <el-row>
+      <el-col :span="12" :offset="1" style="margin-top: 30px">
+        <el-button @click="$router.push({ name: '/' })">Cancelar</el-button>
+      </el-col>
+      <el-col :span="8" :offset="2">
+        <el-button class="btnReg" @click="handleSubmit()">Cadastrar</el-button>
+      </el-col>
+    </el-row>
+  </el-row>
 </template>
 
 <script>
@@ -236,7 +233,6 @@ export default {
         ],
         time: [
           {
-            type: 'date',
             required: true,
             message: 'Tempo de preparo obrigatório',
             trigger: 'change',
@@ -246,7 +242,7 @@ export default {
           {
             required: true,
             message: '',
-            trigger: 'change',
+            trigger: 'blur',
           },
         ],
         categorias: [
@@ -261,14 +257,14 @@ export default {
           {
             required: true,
             message: 'Ingrediente obrigatório',
-            trigger: 'change',
+            trigger: 'blur',
           },
         ],
         un: [
           {
             required: true,
-            message: 'Unidade obrigatória',
-            trigger: 'change',
+            message: 'Quantidade obrigatória',
+            trigger: 'blur',
           },
         ],
       },
@@ -346,11 +342,7 @@ export default {
 .btnReg {
   background-color: #f88836;
   color: #fff;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100px;
-  text-align: right;
+  margin-top: 30px;
 }
 
 .btnAdd:hover {

@@ -5,7 +5,7 @@
         <img
           :src="require('../assets/logo.png')"
           alt="logo"
-          @click="$router.push({ name: '/recipes' })"
+          @click="$router.push({ name: '/' })"
         />
       </el-header>
     </el-col>

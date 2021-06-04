@@ -11,7 +11,9 @@
         <el-input v-model="search" size="mini" placeholder="Type to search" />
       </el-col>
       <el-col :span="4" :offset="12">
-        <el-button @click="$router.push({ name: '/createRecipe' })"
+        <el-button
+          class="btnRecipe"
+          @click="$router.push({ name: '/createRecipe' })"
           >Cadastrar receita</el-button
         >
       </el-col>
@@ -96,10 +98,19 @@ export default {
 
 
 <style scoped>
+.btnRecipe {
+  background-color: #f88836;
+  color: #fff;
+}
+
 h1 {
   color: #535353;
   max-width: 17rem;
   border-bottom: 4px solid #f88836;
   margin: 30px;
+}
+
+h2 {
+  color: #535353;
 }
 </style>
