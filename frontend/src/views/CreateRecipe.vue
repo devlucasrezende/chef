@@ -4,7 +4,21 @@
       <Header />
     </el-row>
     <el-row>
-      <h1>Cadastrar receita</h1>
+      <el-col :span="12">
+        <h1>Cadastrar receita</h1>
+      </el-col>
+      <el-col :span="12">
+        <el-breadcrumb
+          separator-class="el-icon-caret-right"
+          style="margin: 40px; position: absolute; right: 0; font: #535353"
+        >
+          <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/recipes' }"
+            >Receitas</el-breadcrumb-item
+          >
+          <el-breadcrumb-item>Cadastrar</el-breadcrumb-item>
+        </el-breadcrumb>
+      </el-col>
     </el-row>
     <el-row>
       <el-form
@@ -90,7 +104,7 @@
             </el-col>
             <el-col :span="2" :offset="1">
               <el-button class="btnAdd" @click="addIng()"
-                ><i class="el-icon-plus" />Adicionar</el-button
+                ><i class="el-icon-plus" /> Adicionar</el-button
               >
             </el-col>
           </el-row>
@@ -104,9 +118,10 @@
                 <el-button
                   type="text"
                   size="small"
+                  class="remove"
                   @click.native.prevent="deleteRow(scope.$index, tableData)"
                 >
-                  Remove
+                  <i class="el-icon-delete-solid"></i>
                 </el-button>
               </template>
             </el-table-column>
@@ -122,21 +137,23 @@
               </el-col>
               <el-col :span="2">
                 <el-button class="btnAdd2" @click="addPass()"
-                  ><i class="el-icon-plus" />Adicionar</el-button
+                  ><i class="el-icon-plus" /> Adicionar</el-button
                 >
               </el-col>
             </el-row>
             <el-table :data="passTable" max-height="500">
+              <el-table-column label="Passo" prop="passN" width="auto">
+              </el-table-column>
               <el-table-column prop="pass" width="auto"> </el-table-column>
-
               <el-table-column label="Remover" width="auto">
                 <template slot-scope="scope">
                   <el-button
                     type="text"
                     size="small"
+                    class="remove"
                     @click.native.prevent="deleteRow(scope.$index, passTable)"
                   >
-                    Remove
+                    <i class="el-icon-delete-solid"></i>
                   </el-button>
                 </template>
               </el-table-column>
@@ -147,10 +164,14 @@
     </el-row>
     <el-row>
       <el-col :span="12" :offset="1" style="margin-top: 30px">
-        <el-button @click="$router.push({ name: '/' })">Cancelar</el-button>
+        <el-button @click="$router.push({ name: '/recipes' })"
+          ><i class="el-icon-close" /> Cancelar</el-button
+        >
       </el-col>
       <el-col :span="8" :offset="2">
-        <el-button class="btnReg" @click="handleSubmit()">Cadastrar</el-button>
+        <el-button class="btnReg" @click="handleSubmit()"
+          ><i class="el-icon-plus" /> Cadastrar</el-button
+        >
       </el-col>
     </el-row>
   </el-row>
@@ -323,11 +344,12 @@ export default {
   margin-left: 2rem;
 }
 
-.form2 {
+.remove {
+  color: #c53030;
 }
 
 .unSelect {
-  width: 8rem;
+  width: 7.5rem;
 }
 
 .btnAdd {
@@ -347,10 +369,16 @@ export default {
   background-color: #f88836;
   color: #fff;
   margin-top: 30px;
+  position: absolute;
+  right: 4rem;
 }
 
 .btnAdd:hover {
   background-color: #ff892a;
+}
+
+.el-button:hover {
+  background: #db6e20;
 }
 
 img {

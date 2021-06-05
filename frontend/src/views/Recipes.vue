@@ -4,11 +4,25 @@
       <Header />
     </el-row>
     <el-row>
-      <h1>Receitas</h1>
+      <el-col :span="12">
+        <h1>Receitas</h1>
+      </el-col>
+      <el-col :span="12">
+        <el-breadcrumb
+          separator-class="el-icon-caret-right"
+          style="margin: 40px; position: absolute; right: 0; font: #535353"
+        >
+          <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
+          <el-breadcrumb-item>Receitas</el-breadcrumb-item>
+        </el-breadcrumb>
+      </el-col>
     </el-row>
-    <el-row>
-      <el-col :span="8">
+    <el-row :gutter="12">
+      <el-col :span="6">
         <el-input v-model="search" size="mini" placeholder="Pesquisar" />
+      </el-col>
+      <el-col :span="2">
+        <el-button type="primary" icon="el-icon-search"> Pesquisar</el-button>
       </el-col>
       <el-col :span="4" :offset="12">
         <el-button
@@ -30,6 +44,7 @@
         )
       "
       style="width: 100%"
+      height="500"
     >
       <el-table-column label="Nome da Receita" prop="recipes" sortable="">
       </el-table-column>
@@ -41,20 +56,42 @@
       <el-table-column label="Rendimento" prop="yield" sortable="">
       </el-table-column>
       <el-table-column label="Ações">
-        <template slot="header"> </template>
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
-            >Edit</el-button
-          >
-          <el-button
-            size="mini"
-            type="danger"
-            @click="handleDelete(scope.$index, scope.row)"
-            >Delete</el-button
-          >
+          <el-dropdown>
+            <el-button
+              size="mini"
+              type="primary"
+              @click="handleDelete(scope.$index, scope.row)"
+              >Ações <i class="el-icon-arrow-down el-icon--right"
+            /></el-button>
+
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>
+                <i class="el-icon-view" /> Visualizar</el-dropdown-item
+              >
+              <el-dropdown-item
+                ><i class="el-icon-edit-outline" /> Editar</el-dropdown-item
+              >
+              <el-dropdown-item
+                ><i class="el-icon-close" /> Remover</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </el-dropdown>
         </template>
       </el-table-column>
     </el-table>
+    <el-row>
+      <el-col>
+        <el-pagination
+          background
+          small
+          layout="prev, pager, next"
+          :total="500"
+          style="position: absolute; right: 2rem; margin-top: 2rem"
+        >
+        </el-pagination>
+      </el-col>
+    </el-row>
   </el-row>
 </template>
 
@@ -90,6 +127,97 @@ export default {
           chef: 'Tobias',
           yield: '5 Porçoes',
         },
+        {
+          recipes: 'Strogonoff',
+          prep: '30 minutos',
+          category: 'Almoço',
+          chef: 'Tobias',
+          yield: '5 Porçoes',
+        },
+        {
+          recipes: 'Strogonoff',
+          prep: '30 minutos',
+          category: 'Almoço',
+          chef: 'Tobias',
+          yield: '5 Porçoes',
+        },
+        {
+          recipes: 'Strogonoff',
+          prep: '30 minutos',
+          category: 'Almoço',
+          chef: 'Tobias',
+          yield: '5 Porçoes',
+        },
+        {
+          recipes: 'Strogonoff',
+          prep: '30 minutos',
+          category: 'Almoço',
+          chef: 'Tobias',
+          yield: '5 Porçoes',
+        },
+        {
+          recipes: 'Strogonoff',
+          prep: '30 minutos',
+          category: 'Almoço',
+          chef: 'Tobias',
+          yield: '5 Porçoes',
+        },
+        {
+          recipes: 'Strogonoff',
+          prep: '30 minutos',
+          category: 'Almoço',
+          chef: 'Tobias',
+          yield: '5 Porçoes',
+        },
+        {
+          recipes: 'Strogonoff',
+          prep: '30 minutos',
+          category: 'Almoço',
+          chef: 'Tobias',
+          yield: '5 Porçoes',
+        },
+        {
+          recipes: 'Strogonoff',
+          prep: '30 minutos',
+          category: 'Almoço',
+          chef: 'Tobias',
+          yield: '5 Porçoes',
+        },
+        {
+          recipes: 'Strogonoff',
+          prep: '30 minutos',
+          category: 'Almoço',
+          chef: 'Tobias',
+          yield: '5 Porçoes',
+        },
+        {
+          recipes: 'Strogonoff',
+          prep: '30 minutos',
+          category: 'Almoço',
+          chef: 'Tobias',
+          yield: '5 Porçoes',
+        },
+        {
+          recipes: 'Strogonoff',
+          prep: '30 minutos',
+          category: 'Almoço',
+          chef: 'Tobias',
+          yield: '5 Porçoes',
+        },
+        {
+          recipes: 'Strogonoff',
+          prep: '30 minutos',
+          category: 'Almoço',
+          chef: 'Tobias',
+          yield: '5 Porçoes',
+        },
+        {
+          recipes: 'Strogonoff',
+          prep: '30 minutos',
+          category: 'Almoço',
+          chef: 'Tobias',
+          yield: '5 Porçoes',
+        },
       ],
       search: '',
     };
@@ -110,6 +238,10 @@ export default {
 .btnRecipe {
   background-color: #f88836;
   color: #fff;
+}
+
+.el-button:hover {
+  background: #db6e20;
 }
 
 h1 {
