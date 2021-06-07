@@ -138,7 +138,7 @@
             <el-row>
               <el-col :span="16">
                 <p style="margin-bottom: 1rem">Passo {{ passN }}:</p>
-                <el-input v-model="pass"></el-input>
+                <el-input v-model="ruleForm.pass"></el-input>
               </el-col>
               <el-col :span="2">
                 <el-button
@@ -205,8 +205,7 @@ export default {
     return {
       tableData: [],
       passTable: [],
-      pass: [],
-      passN: '',
+      passN: [],
 
       rendimentos: [
         {
@@ -249,6 +248,7 @@ export default {
         time: '',
         ren: '',
         categorias: [],
+        pass: '',
         ing: '',
         unidade: '',
         un: '',
@@ -292,6 +292,11 @@ export default {
             trigger: 'change',
           },
         ],
+        pass: [
+          {
+            type: 'array',
+          },
+        ],
         ing: [
           {
             required: true,
@@ -321,8 +326,13 @@ export default {
     },
 
     addPass() {
-      const { pass } = this;
+      const { pass } = this.ruleForm;
+      const i = this.passTable;
+
       this.passTable.push({ pass });
+      this.passN.push(i.length);
+
+      console.log(i.length);
     },
 
     handleSubmit() {
@@ -384,7 +394,7 @@ export default {
 
 .unSelect {
   width: 7.5rem;
-  color: #f88836;
+  color: #db6e20;
 }
 
 .btnAdd {
