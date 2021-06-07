@@ -209,35 +209,35 @@ export default {
 
       rendimentos: [
         {
-          value: '1 Porção',
+          value: 1,
           label: '1 Porção',
         },
         {
-          value: '2 Porções',
+          value: 2,
           label: '2 Porções',
         },
         {
-          value: '3 Porções',
+          value: 3,
           label: '3 Porções',
         },
         {
-          value: '4 Porções',
+          value: 4,
           label: '4 Porções',
         },
         {
-          value: '5 Porções',
+          value: 5,
           label: '5 Porções',
         },
         {
-          value: '6 Porções',
+          value: 6,
           label: '6 Porções',
         },
         {
-          value: '7 Porções',
+          value: 7,
           label: '7 Porções',
         },
         {
-          value: '8 Porções',
+          value: 8,
           label: '8 Porções',
         },
       ],
@@ -252,7 +252,6 @@ export default {
         ing: '',
         unidade: '',
         un: '',
-        preparo: '',
       },
 
       rules: {
@@ -336,14 +335,13 @@ export default {
     },
 
     handleSubmit() {
-      const { name, time, ren, categorias, preparo } = this.ruleForm;
+      const { name, time, ren } = this.ruleForm;
       // const { tableData, passTable } = this;
       const data = {
-        name,
-        time,
-        ren,
-        categorias,
-        preparo,
+        nome: name,
+        tempoDePreparo: time,
+        rendimento: ren,
+
       };
 
       try {
