@@ -10,7 +10,7 @@
       <el-col :span="12">
         <el-breadcrumb
           separator-class="el-icon-caret-right"
-          style="margin: 40px; position: absolute; right: 0; font: #535353"
+          style="margin: 40px; position: absolute; right: 0"
         >
           <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
           <el-breadcrumb-item>Receitas</el-breadcrumb-item>
@@ -26,7 +26,8 @@
       </el-col>
       <el-col :span="4" :offset="12">
         <el-button
-          class="btnRecipe"
+          icon="el-icon-plus"
+          type="primary"
           @click="$router.push({ name: '/createrecipe' })"
           >Cadastrar receita</el-button
         >
@@ -235,23 +236,9 @@ export default {
 
 
 <style scoped>
-.btnRecipe {
-  background-color: #f88836;
-  color: #fff;
-}
-
-.el-button:hover {
-  background: #db6e20;
-}
-
 h1 {
-  color: #535353;
   max-width: 17rem;
   border-bottom: 4px solid #f88836;
   margin: 30px;
-}
-
-h2 {
-  color: #535353;
 }
 </style>
