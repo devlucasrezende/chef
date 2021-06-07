@@ -19,7 +19,7 @@
     </el-row>
     <el-row :gutter="12">
       <el-col :span="6">
-        <el-input v-model="search" size="mini" placeholder="Pesquisar" />
+        <el-input v-model="search" placeholder="Pesquisar" />
       </el-col>
       <el-col :span="2">
         <el-button type="primary" icon="el-icon-search"> Pesquisar</el-button>

@@ -350,6 +350,7 @@ export default {
 
 .unSelect {
   width: 7.5rem;
+  color: #f88836;
 }
 
 .btnAdd {

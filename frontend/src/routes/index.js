@@ -21,5 +21,10 @@ export default new Router({
       name: '/createrecipe',
       component: () => import('../views/CreateRecipe.vue'),
     },
+    {
+      path: '/forgot',
+      name: '/Forgot',
+      component: () => import('../views/ForgotPass.vue'),
+    },
   ],
 });
