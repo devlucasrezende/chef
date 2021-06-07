@@ -10,7 +10,7 @@
       <el-col :span="12">
         <el-breadcrumb
           separator-class="el-icon-caret-right"
-          style="margin: 40px; position: absolute; right: 0; font: #535353"
+          style="margin: 40px; position: absolute; right: 0"
         >
           <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/recipes' }"
@@ -41,8 +41,8 @@
                 <el-time-select
                   v-model="ruleForm.time"
                   :picker-options="{
-                    start: '00:15',
-                    step: '00:15',
+                    start: '00:00',
+                    step: '00:01',
                     end: '05:00',
                   }"
                   placeholder="Tempo de Preparo"
@@ -103,8 +103,13 @@
               </el-form-item>
             </el-col>
             <el-col :span="2" :offset="1">
-              <el-button class="btnAdd" @click="addIng()"
-                ><i class="el-icon-plus" /> Adicionar</el-button
+              <el-button
+                icone="el-icon-plus"
+                type="primary"
+                class="btnAdd"
+                @click="addIng()"
+              >
+                Adicionar</el-button
               >
             </el-col>
           </el-row>
@@ -119,9 +124,9 @@
                   type="text"
                   size="small"
                   class="remove"
+                  icon="el-icon-delete-solid"
                   @click.native.prevent="deleteRow(scope.$index, tableData)"
                 >
-                  <i class="el-icon-delete-solid"></i>
                 </el-button>
               </template>
             </el-table-column>
@@ -136,14 +141,17 @@
                 <el-input v-model="pass"></el-input>
               </el-col>
               <el-col :span="2">
-                <el-button class="btnAdd2" @click="addPass()"
-                  ><i class="el-icon-plus" /> Adicionar</el-button
+                <el-button
+                  icon="el-icon-plus"
+                  type="primary"
+                  class="btnAdd2"
+                  @click="addPass()"
+                >
+                  Adicionar</el-button
                 >
               </el-col>
             </el-row>
             <el-table :data="passTable" max-height="500">
-              <el-table-column label="Passo" prop="passN" width="auto">
-              </el-table-column>
               <el-table-column prop="pass" width="auto"> </el-table-column>
               <el-table-column label="Remover" width="auto">
                 <template slot-scope="scope">
@@ -151,9 +159,9 @@
                     type="text"
                     size="small"
                     class="remove"
+                    icon="el-icon-delete-solid"
                     @click.native.prevent="deleteRow(scope.$index, passTable)"
                   >
-                    <i class="el-icon-delete-solid"></i>
                   </el-button>
                 </template>
               </el-table-column>
@@ -164,13 +172,22 @@
     </el-row>
     <el-row>
       <el-col :span="12" :offset="1" style="margin-top: 30px">
-        <el-button @click="$router.push({ name: '/recipes' })"
-          ><i class="el-icon-close" /> Cancelar</el-button
+        <el-button
+          icon="el-icon-close"
+          type="default"
+          @click="$router.push({ name: '/recipes' })"
+        >
+          Cancelar</el-button
         >
       </el-col>
       <el-col :span="8" :offset="2">
-        <el-button class="btnReg" @click="handleSubmit()"
-          ><i class="el-icon-plus" /> Cadastrar</el-button
+        <el-button
+          icon="el-icon-plus"
+          type="primary"
+          class="btnReg"
+          @click="handleSubmit()"
+        >
+          Cadastrar</el-button
         >
       </el-col>
     </el-row>
@@ -179,7 +196,7 @@
 
 <script>
 import Header from '../components/Header.vue';
-// import axios from 'axios';
+import api from '../api';
 
 export default {
   name: 'CreateRecipe',
@@ -261,6 +278,7 @@ export default {
         ],
         ren: [
           {
+            type: 'array',
             required: true,
             message: '',
             trigger: 'blur',
@@ -292,16 +310,14 @@ export default {
     };
   },
   methods: {
-    resetForm(ruleForm) {
-      this.$refs[ruleForm].resetFields();
-    },
     deleteRow(index, rows) {
       rows.splice(index, 1);
     },
+
     addIng() {
       const { un, ing, unidade } = this.ruleForm;
       const amount = `${un} ${unidade}`;
-      this.tableData.push({ un, ing, amount });
+      this.tableData.push({ ing, amount });
     },
 
     addPass() {
@@ -310,31 +326,49 @@ export default {
     },
 
     handleSubmit() {
-      // const passT = this.passTable;
-      // const amount = `${un} ${unidade}`;
+      const { name, time, ren, categorias, preparo } = this.ruleForm;
+      // const { tableData, passTable } = this;
+      const data = {
+        name,
+        time,
+        ren,
+        categorias,
+        preparo,
+      };
+
+      try {
+        api.post('/receitas', data).then(() => {
+          this.$notify({
+            title: 'Sucesso',
+            message: 'A receita foi criada com sucesso',
+            type: 'success',
+          });
+        });
+      } catch (e) {
+        console.log(e);
+      }
+
+      console.log(data);
+    },
+
+    submit() {
       // const data = JSON.stringify({ tableData: this.tableData });
-
-      // const data = {
-      //   nome: name,
-      // };
-
-      // axios.post('/receitas', data).then(() => alert('ok'));
-
-      this.$notify({
-        title: 'Success',
-        message: 'This is a success message',
-        type: 'success',
-      });
+      // this.$refs[formName].validate(valid => {
+      //   if (valid) {
+      //   } else {
+      //     console.log('error submit!!');
+      //     return false;
+      //   }
+      // });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
     },
   },
 };
 </script>
 
 <style scoped>
-.el-header {
-  background: #f88836;
-}
-
 .user {
   display: flex;
   width: auto;
@@ -355,58 +389,27 @@ export default {
 
 .btnAdd {
   margin-top: 49px;
-  background-color: #f88836;
-  color: #fff;
 }
 
 .btnAdd2 {
   margin-top: 2.1rem;
   margin-left: 2rem;
-  background-color: #f88836;
-  color: #fff;
 }
 
 .btnReg {
-  background-color: #f88836;
-  color: #fff;
   margin-top: 30px;
   position: absolute;
   right: 4rem;
 }
 
-.btnAdd:hover {
-  background-color: #ff892a;
-}
-
-.el-button:hover {
-  background: #db6e20;
-}
-
-img {
-  max-width: 115px;
-  max-height: 101px;
-  filter: brightness(0) invert(1);
-  cursor: pointer;
-}
-
 h1 {
-  color: #535353;
   max-width: 17rem;
   border-bottom: 4px solid #f88836;
   margin: 30px;
 }
 
-h2 {
-  color: #535353;
-  margin-bottom: 1rem;
-}
-
+h2,
 h3 {
-  color: #535353;
   margin-bottom: 1rem;
-}
-p {
-  font-size: 14px;
-  color: #535353;
 }
 </style>
