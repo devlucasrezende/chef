@@ -15,6 +15,7 @@ public class Receitas {
         private String tempoDePreparo;
         private Integer rendimento;
 
+
         public Receitas(){
 
         }
