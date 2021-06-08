@@ -5,6 +5,5 @@
 prettier.config.js
 .editorconfig
 /backend/.idea
-/backend/target/*
 /frontend/.idea
 *.iml
