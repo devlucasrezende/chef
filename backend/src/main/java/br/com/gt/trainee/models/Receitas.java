@@ -1,7 +1,7 @@
 package br.com.gt.trainee.models;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_receita")
@@ -14,7 +14,6 @@ public class Receitas {
         private String descricao;
         private String tempoDePreparo;
         private Integer rendimento;
-
 
         public Receitas(){
 

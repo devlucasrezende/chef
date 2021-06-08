@@ -46,7 +46,6 @@ public class PeopleController {
     }
 
     @PostMapping("/peoples")
-
     public ResponseEntity<List<Peoples>> addPeoples(@RequestBody Peoples peoples) {
         try {
             Peoples peoples1 = repository.save(new Peoples(peoples.getId(), peoples.getName(), peoples.getAboutMe(), peoples.getFavouriteFood(), peoples.getAge()));
