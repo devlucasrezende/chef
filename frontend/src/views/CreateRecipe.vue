@@ -152,7 +152,7 @@
               </el-col>
             </el-row>
             <el-table :data="passTable" max-height="500">
-              <el-table-column prop="pass" width="auto"> </el-table-column>
+              <el-table-column prop="pass" width="auto" />
               <el-table-column label="Remover" width="auto">
                 <template slot-scope="scope">
                   <el-button
@@ -277,7 +277,7 @@ export default {
         ren: [
           {
             required: true,
-            message: '',
+            message: 'Rendimento obrigatório',
             trigger: 'blur',
           },
         ],
@@ -319,6 +319,7 @@ export default {
     addIng() {
       const { un, ing, unidade } = this.ruleForm;
       const amount = `${un} ${unidade}`;
+
       this.tableData.push({ ing, amount });
     },
 
@@ -340,7 +341,7 @@ export default {
         rendimento: ren,
         ing: this.tableData,
         pass: this.passTable,
-        cat: categorias,
+        cat0: categorias[0],
       };
 
       try {
@@ -354,10 +355,11 @@ export default {
                 type: 'success',
               });
               this.$refs[formName].resetFields();
+              console.log(data);
             });
           } else {
             console.log('error submit!!');
-            return false;
+            console.log(data);
           }
         });
       } catch (e) {

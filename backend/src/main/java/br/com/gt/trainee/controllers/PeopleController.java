@@ -2,10 +2,7 @@ package br.com.gt.trainee.controllers;
 
 
 import br.com.gt.trainee.models.Peoples;
-import br.com.gt.trainee.models.Receitas;
 import br.com.gt.trainee.repositories.PeoplesRepository;
-import br.com.gt.trainee.repositories.PeoplesRepository;
-import br.com.gt.trainee.repositories.ReceitasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
