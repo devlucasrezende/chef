@@ -185,7 +185,7 @@
           icon="el-icon-plus"
           type="primary"
           class="btnReg"
-          @click="handleSubmit()"
+          @click="handleSubmit('ruleForm')"
         >
           Cadastrar</el-button
         >
@@ -241,17 +241,16 @@ export default {
           label: '8 Porções',
         },
       ],
-      rend: '',
 
       ruleForm: {
-        name: '',
-        time: '',
-        ren: '',
+        name: null,
+        time: null,
+        ren: null,
         categorias: [],
-        pass: '',
-        ing: '',
-        unidade: '',
-        un: '',
+        pass: null,
+        ing: null,
+        unidade: null,
+        un: null,
       },
 
       rules: {
@@ -277,7 +276,6 @@ export default {
         ],
         ren: [
           {
-            type: 'array',
             required: true,
             message: '',
             trigger: 'blur',
@@ -334,41 +332,39 @@ export default {
       console.log(i.length);
     },
 
-    handleSubmit() {
-      const { name, time, ren } = this.ruleForm;
-      // const { tableData, passTable } = this;
+    handleSubmit(formName) {
+      const { name, time, ren, categorias } = this.ruleForm;
       const data = {
         nome: name,
         tempoDePreparo: time,
         rendimento: ren,
-
+        ing: this.tableData,
+        pass: this.passTable,
+        cat: categorias,
       };
 
       try {
-        api.post('/receitas', data).then(() => {
-          this.$notify({
-            title: 'Sucesso',
-            message: 'A receita foi criada com sucesso',
-            type: 'success',
-          });
+        // eslint-disable-next-line consistent-return
+        this.$refs[formName].validate(valid => {
+          if (valid) {
+            api.post('/receitas', data).then(() => {
+              this.$notify({
+                title: 'Sucesso',
+                message: 'A receita foi criada com sucesso',
+                type: 'success',
+              });
+              this.$refs[formName].resetFields();
+            });
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
         });
       } catch (e) {
         console.log(e);
       }
-
-      console.log(data);
     },
 
-    submit() {
-      // const data = JSON.stringify({ tableData: this.tableData });
-      // this.$refs[formName].validate(valid => {
-      //   if (valid) {
-      //   } else {
-      //     console.log('error submit!!');
-      //     return false;
-      //   }
-      // });
-    },
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
