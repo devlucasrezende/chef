@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@RestController //Evita o ResponseEntity
 @CrossOrigin
 @RequestMapping(value = "/api")
 public class CategoryController {

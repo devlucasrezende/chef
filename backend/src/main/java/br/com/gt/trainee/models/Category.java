@@ -14,7 +14,6 @@ public class Category {
     private String name;
 
     public Category(){
-
     }
 
     public Category(Long id, String name) {
