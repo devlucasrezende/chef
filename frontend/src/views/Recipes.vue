@@ -10,11 +10,7 @@
       <el-col :span="12">
         <el-breadcrumb
           separator-class="el-icon-caret-right"
-<<<<<<< HEAD
-          style="margin: 40px; position: absolute; right: 0; font: #535353"
-=======
           style="margin: 40px; position: absolute; right: 0"
->>>>>>> origin/dev
         >
           <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
           <el-breadcrumb-item>Receitas</el-breadcrumb-item>
@@ -23,14 +19,7 @@
     </el-row>
     <el-row :gutter="12">
       <el-col :span="6">
-<<<<<<< HEAD
-        <el-input v-model="search" size="mini" placeholder="Pesquisar" />
-=======
         <el-input v-model="search" placeholder="Pesquisar" />
-      </el-col>
-      <el-col :span="2">
-        <el-button type="primary" icon="el-icon-search"> Pesquisar</el-button>
->>>>>>> origin/dev
       </el-col>
       <el-col :span="2">
         <el-button type="primary" icon="el-icon-search"> Pesquisar</el-button>
@@ -247,18 +236,6 @@ export default {
 
 
 <style scoped>
-<<<<<<< HEAD
-.btnRecipe {
-  background-color: #f88836;
-  color: #fff;
-}
-
-.el-button:hover {
-  background: #db6e20;
-}
-
-=======
->>>>>>> origin/dev
 h1 {
   max-width: 17rem;
   border-bottom: 4px solid #f88836;

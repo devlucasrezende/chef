@@ -10,11 +10,7 @@
       <el-col :span="12">
         <el-breadcrumb
           separator-class="el-icon-caret-right"
-<<<<<<< HEAD
-          style="margin: 40px; position: absolute; right: 0; font: #535353"
-=======
           style="margin: 40px; position: absolute; right: 0"
->>>>>>> origin/dev
         >
           <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/recipes' }"
@@ -107,10 +103,6 @@
               </el-form-item>
             </el-col>
             <el-col :span="2" :offset="1">
-<<<<<<< HEAD
-              <el-button class="btnAdd" @click="addIng()"
-                ><i class="el-icon-plus" /> Adicionar</el-button
-=======
               <el-button
                 icone="el-icon-plus"
                 type="primary"
@@ -118,7 +110,6 @@
                 @click="addIng()"
               >
                 Adicionar</el-button
->>>>>>> origin/dev
               >
             </el-col>
           </el-row>
@@ -133,15 +124,9 @@
                   type="text"
                   size="small"
                   class="remove"
-<<<<<<< HEAD
-                  @click.native.prevent="deleteRow(scope.$index, tableData)"
-                >
-                  <i class="el-icon-delete-solid"></i>
-=======
                   icon="el-icon-delete-solid"
                   @click.native.prevent="deleteRow(scope.$index, tableData)"
                 >
->>>>>>> origin/dev
                 </el-button>
               </template>
             </el-table-column>
@@ -156,10 +141,6 @@
                 <el-input v-model="ruleForm.pass"></el-input>
               </el-col>
               <el-col :span="2">
-<<<<<<< HEAD
-                <el-button class="btnAdd2" @click="addPass()"
-                  ><i class="el-icon-plus" /> Adicionar</el-button
-=======
                 <el-button
                   icon="el-icon-plus"
                   type="primary"
@@ -167,33 +148,20 @@
                   @click="addPass()"
                 >
                   Adicionar</el-button
->>>>>>> origin/dev
                 >
               </el-col>
             </el-row>
             <el-table :data="passTable" max-height="500">
-<<<<<<< HEAD
-              <el-table-column label="Passo" prop="passN" width="auto">
-              </el-table-column>
-              <el-table-column prop="pass" width="auto"> </el-table-column>
-=======
               <el-table-column prop="pass" width="auto" />
->>>>>>> origin/dev
               <el-table-column label="Remover" width="auto">
                 <template slot-scope="scope">
                   <el-button
                     type="text"
                     size="small"
                     class="remove"
-<<<<<<< HEAD
-                    @click.native.prevent="deleteRow(scope.$index, passTable)"
-                  >
-                    <i class="el-icon-delete-solid"></i>
-=======
                     icon="el-icon-delete-solid"
                     @click.native.prevent="deleteRow(scope.$index, passTable)"
                   >
->>>>>>> origin/dev
                   </el-button>
                 </template>
               </el-table-column>
@@ -204,15 +172,6 @@
     </el-row>
     <el-row>
       <el-col :span="12" :offset="1" style="margin-top: 30px">
-<<<<<<< HEAD
-        <el-button @click="$router.push({ name: '/recipes' })"
-          ><i class="el-icon-close" /> Cancelar</el-button
-        >
-      </el-col>
-      <el-col :span="8" :offset="2">
-        <el-button class="btnReg" @click="handleSubmit()"
-          ><i class="el-icon-plus" /> Cadastrar</el-button
-=======
         <el-button
           icon="el-icon-close"
           type="default"
@@ -229,7 +188,6 @@
           @click="handleSubmit('ruleForm')"
         >
           Cadastrar</el-button
->>>>>>> origin/dev
         >
       </el-col>
     </el-row>
@@ -433,10 +391,7 @@ export default {
 
 .unSelect {
   width: 7.5rem;
-<<<<<<< HEAD
-=======
   color: #db6e20;
->>>>>>> origin/dev
 }
 
 .btnAdd {
@@ -452,24 +407,6 @@ export default {
   margin-top: 30px;
   position: absolute;
   right: 4rem;
-<<<<<<< HEAD
-}
-
-.btnAdd:hover {
-  background-color: #ff892a;
-}
-
-.el-button:hover {
-  background: #db6e20;
-}
-
-img {
-  max-width: 115px;
-  max-height: 101px;
-  filter: brightness(0) invert(1);
-  cursor: pointer;
-=======
->>>>>>> origin/dev
 }
 
 h1 {
