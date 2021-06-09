@@ -1,8 +1,6 @@
 package br.com.gt.trainee.controllers;
 
-
 import br.com.gt.trainee.models.ModoPreparo;
-import br.com.gt.trainee.models.Receita;
 import br.com.gt.trainee.service.ModoPreparoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

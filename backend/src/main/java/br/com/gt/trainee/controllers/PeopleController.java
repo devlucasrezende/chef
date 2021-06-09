@@ -1,17 +1,12 @@
 package br.com.gt.trainee.controllers;
 
-
 import br.com.gt.trainee.models.Peoples;
-import br.com.gt.trainee.repositories.PeoplesRepository;
 import br.com.gt.trainee.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
