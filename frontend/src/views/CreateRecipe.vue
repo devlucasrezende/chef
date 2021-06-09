@@ -41,7 +41,7 @@
                 <el-time-select
                   v-model="ruleForm.time"
                   :picker-options="{
-                    start: '00:00',
+                    start: '00:01',
                     step: '00:01',
                     end: '05:00',
                   }"
@@ -167,6 +167,15 @@
               </el-table-column>
             </el-table>
           </el-row>
+          <el-row>
+            <el-form-item label="Descrição:" prop="desc">
+              <el-input
+                v-model="ruleForm.desc"
+                style="max-width: 40rem"
+                type="textarea"
+              ></el-input>
+            </el-form-item>
+          </el-row>
         </el-col>
       </el-form>
     </el-row>
@@ -203,8 +212,8 @@ export default {
   components: { Header },
   data() {
     return {
-      tableData: [],
-      passTable: [],
+      tableData: [], // Ingredientes adicionados
+      passTable: [], // Passos adicionados no modo de preparo
       passN: [],
 
       rendimentos: [
@@ -251,6 +260,7 @@ export default {
         ing: null,
         unidade: null,
         un: null,
+        desc: null,
       },
 
       rules: {
@@ -284,7 +294,6 @@ export default {
         categorias: [
           {
             type: 'array',
-            required: true,
             message: 'Por favor selecione pelo menos um',
             trigger: 'change',
           },
@@ -308,6 +317,13 @@ export default {
             trigger: 'blur',
           },
         ],
+        desc: [
+          {
+            required: true,
+            message: 'Por favor adicione uma descrição',
+            trigger: 'blur',
+          },
+        ],
       },
     };
   },
@@ -323,6 +339,7 @@ export default {
       this.tableData.push({ ing, amount });
     },
 
+    // Adicionando passos de modo de preparo
     addPass() {
       const { pass } = this.ruleForm;
       const i = this.passTable;
@@ -333,17 +350,21 @@ export default {
       console.log(i.length);
     },
 
-    handleSubmit(formName) {
+    async handleSubmit(formName) {
       const {
         name: nome,
         time: tempoDePreparo,
         ren: rendimento,
+        desc: descricao,
+        categorias,
       } = this.ruleForm;
 
       const data = {
         nome,
         tempoDePreparo,
         rendimento,
+        descricao,
+        categorias,
       };
 
       try {
@@ -366,6 +387,7 @@ export default {
         });
       } catch (e) {
         console.log(e);
+        console.log(data);
       }
     },
 

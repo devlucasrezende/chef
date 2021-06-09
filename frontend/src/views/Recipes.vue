@@ -47,14 +47,14 @@
       style="width: 100%"
       height="500"
     >
-      <el-table-column label="Nome da Receita" prop="recipes" sortable="">
+      <el-table-column label="Nome da Receita" prop="nome" sortable="">
       </el-table-column>
-      <el-table-column label="Tempo de Preparo " prop="prep" sortable="">
+      <el-table-column label="Tempo de Preparo " prop="tempoDePreparo">
       </el-table-column>
-      <el-table-column label="Categoria" prop="category" sortable="">
+      <el-table-column label="Categoria" prop="categorias" sortable="">
       </el-table-column>
       <el-table-column label="Chef" prop="chef" sortable=""> </el-table-column>
-      <el-table-column label="Rendimento" prop="yield" sortable="">
+      <el-table-column label="Rendimento" prop="rendimento" sortable="">
       </el-table-column>
       <el-table-column label="Ações">
         <template slot-scope="scope">
@@ -98,6 +98,7 @@
 
 <script>
 import Header from '../components/Header.vue';
+import ApiService from '../services/ApiService';
 
 export default {
   name: 'Recipes',
@@ -106,127 +107,29 @@ export default {
   },
   data() {
     return {
-      tableData: [
-        {
-          recipes: 'Pizza de calabresa',
-          prep: '40 minutos',
-          category: 'Salgado, Fast Food',
-          chef: 'Daniel Vidal',
-          yield: '8 Porçoes',
-        },
-        {
-          recipes: 'Pizza de mussarela',
-          prep: '40 minutos',
-          category: 'Salgado, Fast Food',
-          chef: 'Thiago',
-          yield: '8 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-        {
-          recipes: 'Strogonoff',
-          prep: '30 minutos',
-          category: 'Almoço',
-          chef: 'Tobias',
-          yield: '5 Porçoes',
-        },
-      ],
+      tableData: [],
       search: '',
     };
+  },
+  mounted() {
+    this.retrieveRecipes();
   },
   methods: {
     handleEdit(index, row) {
       console.log(index, row);
     },
+
+    retrieveRecipes() {
+      ApiService.getAll()
+        .then(res => {
+          this.tableData = res.data;
+          console.log(res.data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+
     handleDelete(index, row) {
       console.log(index, row);
     },

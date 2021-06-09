@@ -1,9 +1,9 @@
 /frontend/yarn.lock
 /frontend/node_modules
 .vscode
-.eslintrc.json
-prettier.config.js
-.editorconfig
+# .eslintrc.json
+# prettier.config.js
+# .editorconfig
 
 .idea
 /backend/.idea
