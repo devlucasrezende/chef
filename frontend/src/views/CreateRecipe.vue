@@ -341,7 +341,8 @@ export default {
         rendimento: ren,
         ing: this.tableData,
         pass: this.passTable,
-        cat0: categorias[0],
+        categorias: categorias
+
       };
 
       try {

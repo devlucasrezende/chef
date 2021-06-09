@@ -1,9 +1,11 @@
 package br.com.gt.trainee.service;
 
+
 import br.com.gt.trainee.models.Peoples;
 import br.com.gt.trainee.repositories.PeoplesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,21 +14,25 @@ import java.util.Optional;
 public class PeopleService {
 
     @Autowired
-    private PeoplesRepository repository;
+    private PeoplesRepository peoplesRepository;
 
-
+    @Transactional(readOnly = true)
     public List<Peoples> findAll(){
-        return repository.findAll();
+        return peoplesRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Peoples findById(Long id){
-        Optional<Peoples> obj = repository.findById(id);
-        return obj.get();
-
+        return this.peoplesRepository.findById(id).orElse(null);
     }
 
-    public void delete (Long id){
-        repository.deleteById(id);
+    public void deleteById(Long id) {
+        peoplesRepository.deleteById(id);
     }
+
+    public Peoples save(Peoples peoples) {
+        return peoplesRepository.save(peoples);
+    }
+
 
 }
