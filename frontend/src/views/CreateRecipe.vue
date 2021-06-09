@@ -10,7 +10,11 @@
       <el-col :span="12">
         <el-breadcrumb
           separator-class="el-icon-caret-right"
+<<<<<<< HEAD
           style="margin: 40px; position: absolute; right: 0; font: #535353"
+=======
+          style="margin: 40px; position: absolute; right: 0"
+>>>>>>> origin/dev
         >
           <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/recipes' }"
@@ -41,8 +45,8 @@
                 <el-time-select
                   v-model="ruleForm.time"
                   :picker-options="{
-                    start: '00:15',
-                    step: '00:15',
+                    start: '00:00',
+                    step: '00:01',
                     end: '05:00',
                   }"
                   placeholder="Tempo de Preparo"
@@ -103,8 +107,18 @@
               </el-form-item>
             </el-col>
             <el-col :span="2" :offset="1">
+<<<<<<< HEAD
               <el-button class="btnAdd" @click="addIng()"
                 ><i class="el-icon-plus" /> Adicionar</el-button
+=======
+              <el-button
+                icone="el-icon-plus"
+                type="primary"
+                class="btnAdd"
+                @click="addIng()"
+              >
+                Adicionar</el-button
+>>>>>>> origin/dev
               >
             </el-col>
           </el-row>
@@ -119,9 +133,15 @@
                   type="text"
                   size="small"
                   class="remove"
+<<<<<<< HEAD
                   @click.native.prevent="deleteRow(scope.$index, tableData)"
                 >
                   <i class="el-icon-delete-solid"></i>
+=======
+                  icon="el-icon-delete-solid"
+                  @click.native.prevent="deleteRow(scope.$index, tableData)"
+                >
+>>>>>>> origin/dev
                 </el-button>
               </template>
             </el-table-column>
@@ -133,27 +153,47 @@
             <el-row>
               <el-col :span="16">
                 <p style="margin-bottom: 1rem">Passo {{ passN }}:</p>
-                <el-input v-model="pass"></el-input>
+                <el-input v-model="ruleForm.pass"></el-input>
               </el-col>
               <el-col :span="2">
+<<<<<<< HEAD
                 <el-button class="btnAdd2" @click="addPass()"
                   ><i class="el-icon-plus" /> Adicionar</el-button
+=======
+                <el-button
+                  icon="el-icon-plus"
+                  type="primary"
+                  class="btnAdd2"
+                  @click="addPass()"
+                >
+                  Adicionar</el-button
+>>>>>>> origin/dev
                 >
               </el-col>
             </el-row>
             <el-table :data="passTable" max-height="500">
+<<<<<<< HEAD
               <el-table-column label="Passo" prop="passN" width="auto">
               </el-table-column>
               <el-table-column prop="pass" width="auto"> </el-table-column>
+=======
+              <el-table-column prop="pass" width="auto" />
+>>>>>>> origin/dev
               <el-table-column label="Remover" width="auto">
                 <template slot-scope="scope">
                   <el-button
                     type="text"
                     size="small"
                     class="remove"
+<<<<<<< HEAD
                     @click.native.prevent="deleteRow(scope.$index, passTable)"
                   >
                     <i class="el-icon-delete-solid"></i>
+=======
+                    icon="el-icon-delete-solid"
+                    @click.native.prevent="deleteRow(scope.$index, passTable)"
+                  >
+>>>>>>> origin/dev
                   </el-button>
                 </template>
               </el-table-column>
@@ -164,6 +204,7 @@
     </el-row>
     <el-row>
       <el-col :span="12" :offset="1" style="margin-top: 30px">
+<<<<<<< HEAD
         <el-button @click="$router.push({ name: '/recipes' })"
           ><i class="el-icon-close" /> Cancelar</el-button
         >
@@ -171,6 +212,24 @@
       <el-col :span="8" :offset="2">
         <el-button class="btnReg" @click="handleSubmit()"
           ><i class="el-icon-plus" /> Cadastrar</el-button
+=======
+        <el-button
+          icon="el-icon-close"
+          type="default"
+          @click="$router.push({ name: '/recipes' })"
+        >
+          Cancelar</el-button
+        >
+      </el-col>
+      <el-col :span="8" :offset="2">
+        <el-button
+          icon="el-icon-plus"
+          type="primary"
+          class="btnReg"
+          @click="handleSubmit('ruleForm')"
+        >
+          Cadastrar</el-button
+>>>>>>> origin/dev
         >
       </el-col>
     </el-row>
@@ -179,7 +238,7 @@
 
 <script>
 import Header from '../components/Header.vue';
-// import axios from 'axios';
+import api from '../api';
 
 export default {
   name: 'CreateRecipe',
@@ -188,54 +247,52 @@ export default {
     return {
       tableData: [],
       passTable: [],
-      pass: [],
-      passN: '',
+      passN: [],
 
       rendimentos: [
         {
-          value: '1 Porção',
+          value: 1,
           label: '1 Porção',
         },
         {
-          value: '2 Porções',
+          value: 2,
           label: '2 Porções',
         },
         {
-          value: '3 Porções',
+          value: 3,
           label: '3 Porções',
         },
         {
-          value: '4 Porções',
+          value: 4,
           label: '4 Porções',
         },
         {
-          value: '5 Porções',
+          value: 5,
           label: '5 Porções',
         },
         {
-          value: '6 Porções',
+          value: 6,
           label: '6 Porções',
         },
         {
-          value: '7 Porções',
+          value: 7,
           label: '7 Porções',
         },
         {
-          value: '8 Porções',
+          value: 8,
           label: '8 Porções',
         },
       ],
-      rend: '',
 
       ruleForm: {
-        name: '',
-        time: '',
-        ren: '',
+        name: null,
+        time: null,
+        ren: null,
         categorias: [],
-        ing: '',
-        unidade: '',
-        un: '',
-        preparo: '',
+        pass: null,
+        ing: null,
+        unidade: null,
+        un: null,
       },
 
       rules: {
@@ -262,7 +319,7 @@ export default {
         ren: [
           {
             required: true,
-            message: '',
+            message: 'Rendimento obrigatório',
             trigger: 'blur',
           },
         ],
@@ -272,6 +329,11 @@ export default {
             required: true,
             message: 'Por favor selecione pelo menos um',
             trigger: 'change',
+          },
+        ],
+        pass: [
+          {
+            type: 'array',
           },
         ],
         ing: [
@@ -292,49 +354,70 @@ export default {
     };
   },
   methods: {
-    resetForm(ruleForm) {
-      this.$refs[ruleForm].resetFields();
-    },
     deleteRow(index, rows) {
       rows.splice(index, 1);
     },
+
     addIng() {
       const { un, ing, unidade } = this.ruleForm;
       const amount = `${un} ${unidade}`;
-      this.tableData.push({ un, ing, amount });
+
+      this.tableData.push({ ing, amount });
     },
 
     addPass() {
-      const { pass } = this;
+      const { pass } = this.ruleForm;
+      const i = this.passTable;
+
       this.passTable.push({ pass });
+      this.passN.push(i.length);
+
+      console.log(i.length);
     },
 
-    handleSubmit() {
-      // const passT = this.passTable;
-      // const amount = `${un} ${unidade}`;
-      // const data = JSON.stringify({ tableData: this.tableData });
+    handleSubmit(formName) {
+      const { name, time, ren, categorias } = this.ruleForm;
+      const data = {
+        nome: name,
+        tempoDePreparo: time,
+        rendimento: ren,
+        ing: this.tableData,
+        pass: this.passTable,
+        categorias: categorias
 
-      // const data = {
-      //   nome: name,
-      // };
+      };
 
-      // axios.post('/receitas', data).then(() => alert('ok'));
+      try {
+        // eslint-disable-next-line consistent-return
+        this.$refs[formName].validate(valid => {
+          if (valid) {
+            api.post('/receitas', data).then(() => {
+              this.$notify({
+                title: 'Sucesso',
+                message: 'A receita foi criada com sucesso',
+                type: 'success',
+              });
+              this.$refs[formName].resetFields();
+              console.log(data);
+            });
+          } else {
+            console.log('error submit!!');
+            console.log(data);
+          }
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    },
 
-      this.$notify({
-        title: 'Success',
-        message: 'This is a success message',
-        type: 'success',
-      });
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
     },
   },
 };
 </script>
 
 <style scoped>
-.el-header {
-  background: #f88836;
-}
-
 .user {
   display: flex;
   width: auto;
@@ -350,27 +433,26 @@ export default {
 
 .unSelect {
   width: 7.5rem;
+<<<<<<< HEAD
+=======
+  color: #db6e20;
+>>>>>>> origin/dev
 }
 
 .btnAdd {
   margin-top: 49px;
-  background-color: #f88836;
-  color: #fff;
 }
 
 .btnAdd2 {
   margin-top: 2.1rem;
   margin-left: 2rem;
-  background-color: #f88836;
-  color: #fff;
 }
 
 .btnReg {
-  background-color: #f88836;
-  color: #fff;
   margin-top: 30px;
   position: absolute;
   right: 4rem;
+<<<<<<< HEAD
 }
 
 .btnAdd:hover {
@@ -386,26 +468,18 @@ img {
   max-height: 101px;
   filter: brightness(0) invert(1);
   cursor: pointer;
+=======
+>>>>>>> origin/dev
 }
 
 h1 {
-  color: #535353;
   max-width: 17rem;
   border-bottom: 4px solid #f88836;
   margin: 30px;
 }
 
-h2 {
-  color: #535353;
-  margin-bottom: 1rem;
-}
-
+h2,
 h3 {
-  color: #535353;
   margin-bottom: 1rem;
-}
-p {
-  font-size: 14px;
-  color: #535353;
 }
 </style>

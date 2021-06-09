@@ -1,31 +1,38 @@
 <template>
-  <div id="container">
+  <el-row ref="require('../assets/background.png')" class="container">
     <div class="form">
       <img src="../assets/logo.png" alt="" />
       <label>E-mail</label>
-      <input type="email" placeholder="daniel@youxgroup" />
+      <el-input v-model="mail" placeholder="daniel@youxgroup"></el-input>
       <label>Senha</label>
-      <input type="password" placeholder="Digite sua Senha" />
+      <el-input type="password" placeholder="Digite sua Senha" />
       <button type="submit" @click="$router.push({ name: '/recipes' })">
         Entrar
       </button>
       <div class="ctr">
         <span>
           Não tem conta?
-          <span class="toClick" @click="redirect()">Cadastre-se</span>
+          <span class="toClick">Cadastre-se</span>
         </span>
       </div>
       <br />
       <div class="ctr">
-        <span class="toClick" @click="redirect()">Esqueci minha senha</span>
+        <span class="toClick" @click="$router.push({ name: '/Forgot' })"
+          >Esqueci minha senha</span
+        >
       </div>
     </div>
-  </div>
+  </el-row>
 </template>
 
 <script>
 export default {
   name: 'SignIn',
+  data() {
+    return {
+      mail: '',
+    };
+  },
 
   methods: {
     redirect() {},
@@ -68,7 +75,7 @@ img {
 label {
 }
 
-input {
+el-input {
   border: #808080;
   height: 35px;
   margin-top: 15px;

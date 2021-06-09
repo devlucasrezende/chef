@@ -4,3 +4,11 @@
 .eslintrc.json
 prettier.config.js
 .editorconfig
+<<<<<<< HEAD
+=======
+
+.idea
+/backend/.idea
+/frontend/.idea
+*.iml
+>>>>>>> origin/dev

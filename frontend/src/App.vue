@@ -5,8 +5,6 @@
 </template>
 
 <script>
-// import CreateRecipe from './components/CreateRecipe.vue';
-
 export default {
   name: 'App',
 };
