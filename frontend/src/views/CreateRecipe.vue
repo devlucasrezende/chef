@@ -334,15 +334,16 @@ export default {
     },
 
     handleSubmit(formName) {
-      const { name, time, ren, categorias } = this.ruleForm;
-      const data = {
-        nome: name,
-        tempoDePreparo: time,
-        rendimento: ren,
-        ing: this.tableData,
-        pass: this.passTable,
-        categorias: categorias
+      const {
+        name: nome,
+        time: tempoDePreparo,
+        ren: rendimento,
+      } = this.ruleForm;
 
+      const data = {
+        nome,
+        tempoDePreparo,
+        rendimento,
       };
 
       try {

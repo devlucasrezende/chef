@@ -7,5 +7,9 @@ prettier.config.js
 
 .idea
 /backend/.idea
+/backend/.project
+/backend/.classpath
+/backend/.factorypath
+/backend/.settings
 /frontend/.idea
 *.iml

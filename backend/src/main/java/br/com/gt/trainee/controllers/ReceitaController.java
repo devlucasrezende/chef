@@ -1,11 +1,8 @@
 package br.com.gt.trainee.controllers;
 
-
 import br.com.gt.trainee.models.Receita;
 import br.com.gt.trainee.service.ReceitaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
