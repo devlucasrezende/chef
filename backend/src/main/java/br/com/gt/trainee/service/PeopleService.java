@@ -5,6 +5,7 @@ import br.com.gt.trainee.models.Peoples;
 import br.com.gt.trainee.repositories.PeoplesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,10 +16,12 @@ public class PeopleService {
     @Autowired
     private PeoplesRepository peoplesRepository;
 
+    @Transactional(readOnly = true)
     public List<Peoples> findAll(){
         return peoplesRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Peoples findById(Long id){
         return this.peoplesRepository.findById(id).orElse(null);
     }

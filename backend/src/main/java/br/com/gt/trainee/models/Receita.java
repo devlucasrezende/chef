@@ -36,4 +36,7 @@ public class Receita {
                 inverseJoinColumns=@JoinColumn(name="id_category", referencedColumnName="id"))
         private Set<Category> categorias;
 
+        @OneToMany(cascade = CascadeType.PERSIST)
+        private Set<ModoPreparo> modoPreparos;
+
 }
