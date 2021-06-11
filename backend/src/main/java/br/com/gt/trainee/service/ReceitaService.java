@@ -4,6 +4,8 @@ import br.com.gt.trainee.models.Category;
 import br.com.gt.trainee.models.Receita;
 import br.com.gt.trainee.repositories.CategoryRepository;
 import br.com.gt.trainee.repositories.ReceitasRepository;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,13 +38,8 @@ public class ReceitaService {
         this.repository.deleteById(id);
     }
 
-    public Receita save(Receita receita) {
-        Set<Category> categories = new HashSet<>();
-        for (Category categoria : receita.getCategorias()) {
-            categories.add(this.categoryRepository.findById(categoria.getId()).orElse(null));
-        }
-        receita.setCategorias(categories);
 
+    public Receita save(Receita receita) {
         return this.repository.save(receita);
     }
 

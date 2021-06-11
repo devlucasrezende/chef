@@ -4,8 +4,10 @@ package br.com.gt.trainee.models;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.*;
@@ -30,7 +32,8 @@ public class Receita {
         @Min(1)
         private Integer rendimento;
 
-        @ManyToMany(cascade = CascadeType.ALL)
+        @Valid
+        @ManyToMany
         @JoinTable(name="rel_categoria_receita",
                 joinColumns=@JoinColumn(name="id_receita", referencedColumnName="id"),
                 inverseJoinColumns=@JoinColumn(name="id_category", referencedColumnName="id"))
@@ -38,5 +41,8 @@ public class Receita {
 
         @OneToMany(cascade = CascadeType.PERSIST)
         private Set<ModoPreparo> modoPreparos;
+
+
+
 
 }
