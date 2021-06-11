@@ -3,6 +3,16 @@
     <el-row>
       <Header />
     </el-row>
+    <div v-for="item in tableData" :key="item.id">
+      <el-dialog :title="item.nome" :visible.sync="dialogFormVisible">
+        <p>Descrição: {{ item.categorias }}</p>
+        <p>Tempo de preparo</p>
+        <p>Rendimento</p>
+        <p>Descrição: {{ item.descricao }}</p>
+        <p>Ingredientes</p>
+        <p>Modo de preparo</p>
+      </el-dialog>
+    </div>
     <el-row>
       <el-col :span="12">
         <h1>Receitas</h1>
@@ -40,41 +50,35 @@
       :data="
         tableData.filter(
           data =>
-            !search ||
-            data.recipes.toLowerCase().includes(search.toLowerCase()),
+            !search || data.nome.toLowerCase().includes(search.toLowerCase()),
         )
       "
       style="width: 100%"
       height="500"
     >
-      <el-table-column label="Nome da Receita" prop="nome" sortable="">
-      </el-table-column>
-      <el-table-column label="Tempo de Preparo " prop="tempoDePreparo">
-      </el-table-column>
-      <el-table-column label="Categoria" prop="categorias" sortable="">
-      </el-table-column>
-      <el-table-column label="Chef" prop="chef" sortable=""> </el-table-column>
-      <el-table-column label="Rendimento" prop="rendimento" sortable="">
-      </el-table-column>
+      <el-table-column label="Nome da Receita" prop="nome" />
+      <el-table-column label="Tempo de Preparo " prop="tempoDePreparo" />
+      <el-table-column label="Categoria" :prop="getCategory()" />
+      <el-table-column label="Chef" prop="chef" />
+      <el-table-column label="Rendimento" prop="rendimento" />
       <el-table-column label="Ações">
         <template slot-scope="scope">
-          <el-dropdown>
-            <el-button
-              size="mini"
-              type="primary"
-              @click="handleDelete(scope.$index, scope.row)"
+          <el-dropdown @command="handleAction">
+            <el-button size="mini" type="primary"
               >Ações <i class="el-icon-arrow-down el-icon--right"
             /></el-button>
-
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>
-                <i class="el-icon-view" /> Visualizar</el-dropdown-item
+              <el-dropdown-item icon="el-icon-view" command="see">
+                Visualizar</el-dropdown-item
+              >
+              <el-dropdown-item icon="el-icon-edit-outline" command="edit">
+                Editar</el-dropdown-item
               >
               <el-dropdown-item
-                ><i class="el-icon-edit-outline" /> Editar</el-dropdown-item
+                icon="el-icon-close"
+                @click.native.prevent="handleDelete(scope.$index, scope.row)"
               >
-              <el-dropdown-item
-                ><i class="el-icon-close" /> Remover</el-dropdown-item
+                Remover</el-dropdown-item
               >
             </el-dropdown-menu>
           </el-dropdown>
@@ -107,8 +111,14 @@ export default {
   },
   data() {
     return {
-      tableData: [],
-      search: '',
+      tableData: [
+        {
+          descricao: null,
+        },
+      ],
+
+      search: null,
+      dialogFormVisible: false,
     };
   },
   mounted() {
@@ -130,13 +140,30 @@ export default {
         });
     },
 
+    getCategory() {
+      return 'ok';
+    },
+
     handleDelete(index, row) {
-      console.log(index, row);
+      const deleteBy = (index, row);
+      try {
+        ApiService.delete(deleteBy.id).then(res => {
+          console.log(res);
+        });
+      } catch (e) {
+        console.log(e);
+        console.log(deleteBy);
+      }
+    },
+
+    handleAction(command) {
+      if (command === 'see') {
+        this.dialogFormVisible = true;
+      }
     },
   },
 };
 </script>
-
 
 <style scoped>
 h1 {
