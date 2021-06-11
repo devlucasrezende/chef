@@ -206,6 +206,7 @@
 <script>
 import Header from '../components/Header.vue';
 import api from '../api';
+// import ApiService from '../services/ApiService';
 
 export default {
   name: 'CreateRecipe',
@@ -327,6 +328,10 @@ export default {
       },
     };
   },
+  // mounted() {
+  //   this.retrieveRecipes();
+  // },
+
   methods: {
     deleteRow(index, rows) {
       rows.splice(index, 1);
@@ -339,18 +344,25 @@ export default {
       this.tableData.push({ ing, amount });
     },
 
+    // retrieveRecipes() {
+    //   ApiService.getCategories()
+    //     .then(res => {
+    //       this.ruleForm.categorias = res.data;
+    //       console.log(res.data);
+    //     })
+    //     .catch(e => {
+    //       console.log(e);
+    //     });
+    // },
+
     // Adicionando passos de modo de preparo
     addPass() {
       const { pass } = this.ruleForm;
-      const i = this.passTable;
 
       this.passTable.push({ pass });
-      this.passN.push(i.length);
-
-      console.log(i.length);
     },
 
-    async handleSubmit(formName) {
+    handleSubmit(formName) {
       const {
         name: nome,
         time: tempoDePreparo,

@@ -5,6 +5,10 @@ class ApiService {
     return api.get('/receitas');
   }
 
+  getCategories() {
+    return api.get('/category');
+  }
+
   get(id) {
     return api.get(`/receitas/${id}`);
   }
